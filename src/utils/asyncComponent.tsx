@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 
-export default function asyncComponent(importComponent) {
-  class AsyncComponent extends Component {
-    constructor(props) {
-      super(props);
+export default function asyncComponent(importComponent:any) {
+  interface Iprops{
 
-      this.state = {
-        component: null
-      };
+  }
+  interface Istates{
+    component:any
+  }
+  class AsyncComponent extends Component<Iprops,Istates> {
+
+    state:Readonly<Istates>={
+      component:null
+    }
+
+    constructor(props:Iprops) {
+      super(props);
     }
 
     async componentDidMount() {
@@ -17,7 +24,7 @@ export default function asyncComponent(importComponent) {
     }
 
     render() {
-      const C = this.state.component;
+      const C:any = this.state.component;
 
       return C ? <C {...this.props} /> : null;
     }

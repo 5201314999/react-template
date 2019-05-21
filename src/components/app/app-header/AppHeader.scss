@@ -1,0 +1,36 @@
+@import 'var.scss';
+
+.app-header{
+    background: #ffffff;
+    display:flex;
+    justify-content: space-between;
+    padding:0;
+    height:100%;
+    overflow: hidden;
+    .sider-trigger{
+        cursor: pointer;
+    }
+    .nav{
+        padding-right:24px;
+        .avatar-info{
+            display: inline-block;
+            font-size:0;
+            height:64px;
+            line-height:64px;
+            overflow: hidden;
+            img{
+                width:36px;
+                height:36px;
+                border-radius:50%;
+                vertical-align: middle;
+            }
+            h1{ 
+                display:inline-block;
+                color: $text-color;
+                font-size: 16px;
+                vertical-align: middle;
+                margin-left:16px;
+            }
+        }
+    }
+}

@@ -1,19 +1,19 @@
 import * as styles from "./AppLayout.scss";
 import * as React from "react";
-import { Layout, Icon, Menu, Dropdown } from "antd";
+import * as Loadable from "react-loadable";
+import { Route } from "react-router-dom";
+
+import { Layout, Menu } from "antd";
 
 import AppMenu from "@/components/app/app-menu/AppMenu";
+import AppHeader from "@/components/app/app-header/AppHeader";
 import AppFooter from "@/components/app/app-footer/AppFooter";
 
 import logo from "@/images/logo.svg";
-import avatar from "@/images/home/avatar.jpg";
 
 const { Header, Sider, Content } = Layout;
-const SubMenu = Menu.SubMenu;
 
-interface IProps {
-  name: string;
-}
+interface IProps {}
 
 interface IState {
   collapse?: boolean;
@@ -36,11 +36,6 @@ class AppLayout extends React.Component<IProps, IState> {
   }
 
   render() {
-    const menuLogo = this.state.collapse ? (
-      <Icon type="menu-unfold" />
-    ) : (
-      <Icon type="menu-fold" />
-    );
     return (
       <Layout className={styles.layout}>
         <Sider
@@ -48,82 +43,20 @@ class AppLayout extends React.Component<IProps, IState> {
             this.state.collapse ? styles.collapseSider : ""
           }`}
         >
-          {/* <section className={styles.header}>
+          <section className={styles.header}>
             <a className={styles.logo} href="#">
               <img src={logo} alt="logo" />
               <h1>hero中后台</h1>
             </a>
-          </section> */}
+          </section>
           <AppMenu menus={this.state.menus} collapse={this.state.collapse} />
         </Sider>
         <Layout>
-          <Header className={styles.appHeader}>
-            <div className={styles.siderTrigger} onClick={this.handleCollapse}>
-              {menuLogo}
-            </div>
-            <div className={styles.nav}>
-              <Dropdown
-                overlay={
-                  <Menu>
-                    {this.state.sysMenu.map(item => (
-                      <Menu.Item key={item.key}>{item.name}</Menu.Item>
-                    ))}
-                  </Menu>
-                }
-                className={styles.avatarInfo}
-              >
-                <a className="ant-dropdown-link" href="#">
-                  <img src={avatar} />
-                  <h1>{this.state.userName}</h1>
-                </a>
-              </Dropdown>
-            </div>
+          <Header className={styles.antLayoutHeader}>
+            <AppHeader collapse={false} handleCollapse={()=>this.handleCollapse()}/>
           </Header>
           <Content>
-            <Menu
-              // defaultSelectedKeys={['1']}
-              // defaultOpenKeys={['sub1']}
-              mode="inline"
-              theme="dark"
-              inlineCollapsed={this.state.collapse}
-            >
-              <Menu.Item key="1">
-                <Icon type="pie-chart" />
-                <span>Option 1</span>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <Icon type="desktop" />
-                <span>Option 2</span>
-              </Menu.Item>
-              <Menu.Item key="3">
-                <Icon type="inbox" />
-                <span>Option 3</span>
-              </Menu.Item>
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="mail" />
-                    <span>Navigation One</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="5">Option 5</Menu.Item>
-                <Menu.Item key="6">Option 6</Menu.Item>
-                <Menu.Item key="7">Option 7</Menu.Item>
-                <Menu.Item key="8">Option 8</Menu.Item>
-                <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <Icon type="mail" />
-                    <span>Navigation two</span>
-                  </span>
-                }>
-                      <Menu.Item key="8">Option 10</Menu.Item>
-                </SubMenu>
-              </SubMenu>
-            </Menu>
+            {/* <Route key={} extact={true} path="" component={} /> */}
           </Content>
           <AppFooter />
         </Layout>
@@ -146,7 +79,8 @@ class AppLayout extends React.Component<IProps, IState> {
           children: [
             {
               key: "analysis",
-              name: "分析页"
+              name: "分析页",
+              link: "/dashboard/analysis"
             }
           ]
         },
@@ -157,15 +91,18 @@ class AppLayout extends React.Component<IProps, IState> {
           children: [
             {
               key: "403",
-              name: "403"
+              name: "403",
+              link: "/excpetion/403"
             },
             {
               key: "404",
-              name: "404"
+              name: "404",
+              link: "/excpetion/404"
             },
             {
               key: "500",
-              name: "500"
+              name: "500",
+              link: "/excpetion/403"
             }
           ]
         },
@@ -175,34 +112,25 @@ class AppLayout extends React.Component<IProps, IState> {
           icon: "trophy",
           children: [
             {
-              key: "author",
+              key: "authority",
               name: "权限管理",
               icon: "trophy",
               children: [
                 {
                   key: "admin",
-                  name: "管理员"
+                  name: "管理员",
+                  link: "/authority/admin"
                 },
                 {
                   key: "user",
-                  name: "普通用户"
+                  name: "普通用户",
+                  link: "/authority/user"
                 }
               ]
             }
           ]
         }
-      ],
-      sysMenu: [
-        {
-          key: "info",
-          name: "个人信息"
-        },
-        {
-          key: "logout",
-          name: "退出登录"
-        }
-      ],
-      userName: "超级管理员"
+      ]
     });
   }
 

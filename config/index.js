@@ -4,7 +4,7 @@ module.exports={
         assetsPublicPath:'/',
         server:{
             host:'10.180.171.54',
-            port:8088,
+            port:8080,
             compress:true,
             autoOpenBrowser:true
         }

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import Home from '@/views/home/Home';
+import Router from '@/router'
 import './index.less';
+
 
 const render = () => {  
     ReactDOM.render(
-        <Home />,
+        <Router />,
         document.querySelector('#app'));
 }
 

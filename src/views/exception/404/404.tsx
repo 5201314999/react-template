@@ -1,15 +1,15 @@
 import * as React from 'react';
 
 
-class Dashboard extends React.Component{
+class Page404 extends React.Component{
     
     render(){
         return (
             <div>
-                    I am dashboard
+                    I am 404
             </div>
         )
     }
 }
 
-export default Dashboard;
+export default Page404;

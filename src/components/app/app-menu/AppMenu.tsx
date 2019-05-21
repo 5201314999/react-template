@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Menu,Icon} from 'antd';
+import {Link} from 'react-router-dom';
 
 import * as Styles from './AppMenu.scss'; 
 
@@ -51,7 +52,7 @@ export default class AppMenu extends React.Component<IProps>{
                 )
             }
             else{
-                return (<Menu.Item key={item.key}><Icon type="desktop" />{item.name}</Menu.Item>)
+                return (<Menu.Item key={item.key}><Link to={item.link}><Icon type="desktop" />{item.name}</Link></Menu.Item>)
             }
         })
     }
