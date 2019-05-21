@@ -3,20 +3,22 @@ import * as React from "react";
 import * as Loadable from "react-loadable";
 import { Route } from "react-router-dom";
 
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Icon } from "antd";
 
 import AppMenu from "@/components/app/app-menu/AppMenu";
 import AppHeader from "@/components/app/app-header/AppHeader";
 import AppFooter from "@/components/app/app-footer/AppFooter";
 
 import logo from "@/images/logo.svg";
+import {frameConfig} from '@/common/config';
 
 const { Header, Sider, Content } = Layout;
+const SubMenu = Menu.SubMenu;
 
 interface IProps {}
 
 interface IState {
-  collapse?: boolean;
+  collapsed?: boolean;
   sysMenu: any[];
   menus: any[];
   userName?: string;
@@ -24,7 +26,7 @@ interface IState {
 
 class AppLayout extends React.Component<IProps, IState> {
   public readonly state: Readonly<IState> = {
-    collapse: false,
+    collapsed: false,
     sysMenu: [],
     menus: [],
     userName: ""
@@ -38,22 +40,21 @@ class AppLayout extends React.Component<IProps, IState> {
   render() {
     return (
       <Layout className={styles.layout}>
-        <Sider
-          className={`${styles.appSider} ${
-            this.state.collapse ? styles.collapseSider : ""
-          }`}
-        >
+        <Sider className={styles.appSider} width={256} trigger={null} collapsible collapsed={this.state.collapsed}>
           <section className={styles.header}>
             <a className={styles.logo} href="#">
               <img src={logo} alt="logo" />
-              <h1>hero中后台</h1>
+              <h1>{frameConfig.sysname}</h1>
             </a>
           </section>
-          <AppMenu menus={this.state.menus} collapse={this.state.collapse} />
+          <AppMenu menus={this.state.menus} collapsed={this.state.collapsed} />
         </Sider>
         <Layout>
           <Header className={styles.antLayoutHeader}>
-            <AppHeader collapse={false} handleCollapse={()=>this.handleCollapse()}/>
+            <AppHeader
+              collapsed={false}
+              handleCollapse={() => this.handleCollapse()}
+            />
           </Header>
           <Content>
             {/* <Route key={} extact={true} path="" component={} /> */}
@@ -75,7 +76,7 @@ class AppLayout extends React.Component<IProps, IState> {
         {
           key: "Dashboard",
           name: "Dashboard",
-          icon: "trophy",
+          icon: "crown",
           children: [
             {
               key: "analysis",
@@ -87,7 +88,7 @@ class AppLayout extends React.Component<IProps, IState> {
         {
           key: "exception",
           name: "异常页",
-          icon: "trophy",
+          icon: "tool",
           children: [
             {
               key: "403",
@@ -114,7 +115,7 @@ class AppLayout extends React.Component<IProps, IState> {
             {
               key: "authority",
               name: "权限管理",
-              icon: "trophy",
+              icon: "car",
               children: [
                 {
                   key: "admin",
@@ -134,10 +135,10 @@ class AppLayout extends React.Component<IProps, IState> {
     });
   }
 
-  // collapse or expand sider
+  // collapsed or expand sider
   handleCollapse() {
     this.setState({
-      collapse: !this.state.collapse
+      collapsed: !this.state.collapsed
     });
   }
 }

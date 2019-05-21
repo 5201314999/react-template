@@ -12,6 +12,10 @@
     }
     .nav{
         padding-right:24px;
+        display: flex;
+        .item{
+            margin-left:24px;
+        }
         .avatar-info{
             display: inline-block;
             font-size:0;

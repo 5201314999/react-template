@@ -8,7 +8,7 @@ const SubMenu=Menu.SubMenu;
 
 interface IProps{
     menus:any[],
-    collapse?:boolean
+    collapsed?:boolean
 }
 
 export default class AppMenu extends React.Component<IProps>{
@@ -20,12 +20,12 @@ export default class AppMenu extends React.Component<IProps>{
     render(){
         return (
             <Menu
-            // defaultSelectedKeys={['1']}
-            // defaultOpenKeys={['sub1']}
-            mode="inline"
-            theme="dark"
-            inlineCollapsed={this.props.collapse}
-          >
+                // defaultSelectedKeys={['1']}
+                // defaultOpenKeys={['sub1']}
+                mode="inline"
+                theme="dark"
+                inlineCollapsed={this.props.collapsed}
+            >
                 {   
                     this.buildMenu(this.props.menus)
                 }
@@ -52,7 +52,7 @@ export default class AppMenu extends React.Component<IProps>{
                 )
             }
             else{
-                return (<Menu.Item key={item.key}><Link to={item.link}><Icon type="desktop" />{item.name}</Link></Menu.Item>)
+                return (<Menu.Item key={item.key}><Link to={item.link}>{item.name}</Link></Menu.Item>)
             }
         })
     }
