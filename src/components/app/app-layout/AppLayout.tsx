@@ -1,13 +1,13 @@
 import * as styles from "./AppLayout.scss";
 import * as React from "react";
-import * as Loadable from "react-loadable";
-import { Route } from "react-router-dom";
 
 import { Layout, Menu, Icon } from "antd";
 
 import AppMenu from "@/components/app/app-menu/AppMenu";
 import AppHeader from "@/components/app/app-header/AppHeader";
+import AppContent from '@/components/app/app-content/AppContent';
 import AppFooter from "@/components/app/app-footer/AppFooter";
+import BreadCramb from '@/components/app/app-breadcrumb/AppBreadCrumb'
 
 import logo from "@/images/logo.svg";
 import {frameConfig} from '@/common/config';
@@ -37,6 +37,7 @@ class AppLayout extends React.Component<IProps, IState> {
     this.handleCollapse = this.handleCollapse.bind(this);
   }
 
+
   render() {
     return (
       <Layout className={styles.layout}>
@@ -57,7 +58,8 @@ class AppLayout extends React.Component<IProps, IState> {
             />
           </Header>
           <Content>
-            {/* <Route key={} extact={true} path="" component={} /> */}
+              {frameConfig.showMode==='tabs'?undefined:<BreadCramb/>}
+              <AppContent />
           </Content>
           <AppFooter />
         </Layout>
@@ -82,6 +84,22 @@ class AppLayout extends React.Component<IProps, IState> {
               key: "analysis",
               name: "分析页",
               link: "/dashboard/analysis"
+            }
+          ]
+        },
+        {
+          key: "buisness",
+          name: "业务模块",
+          icon: "gift",
+          children: [
+            {
+              key: "table",
+              name: "表格管理",
+              link: "/bussiness/table"
+            },{
+              key: "log",
+              name: "日志页面",
+              link: "/bussiness/log"
             }
           ]
         },

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 import App from '@/views/app/App';
 
@@ -7,10 +7,10 @@ import App from '@/views/app/App';
 export default class Router extends React.Component{
     render(){
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <App>
                 </App>
-            </BrowserRouter>
+            </HashRouter>
         )       
     }
 }
