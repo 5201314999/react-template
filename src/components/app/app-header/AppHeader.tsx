@@ -13,7 +13,6 @@ interface IState {
     sysMenu:any[],
     message:any[],
     userName:string
-
 }
 
 
