@@ -7,7 +7,7 @@ export default class AppBreadCrumb extends React.Component{
 
     render(){ 
         return (
-            <div class={Styles.breadcrumbWrapper}> 
+            <div className={Styles.breadcrumbWrapper}> 
                 <Breadcrumb>
                     <Breadcrumb.Item href="">
                     <Icon type="home" />

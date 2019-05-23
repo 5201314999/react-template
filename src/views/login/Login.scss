@@ -1,0 +1,89 @@
+body{
+    font-size:12px;
+}
+.login-wrapper{
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(0,0,0,.3);
+    .form{
+        min-width:300px;
+        padding:2rem;
+        background-color:#ffffff;
+        border-radius:4px;
+        header{
+            display:flex;
+            justify-content: space-between;
+            margin-bottom:20px;
+            h1{
+                font-size:20px;
+                color:rgba(0,0,0,0.85);
+            }
+            .imgWrapper{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .input-box{
+            border:1px solid #e9e9e9;
+            border-radius:5px;
+            padding:10px;
+            margin-bottom:20px;
+            input{
+                border:none;
+                outline:none;
+            }
+            
+        }
+        .primary-btn{
+            width:100%;
+            height:3.3rem;
+            background-color:#007fff;
+            outline:none;
+            border-radius:5px;
+            cursor:pointer;
+            color:#ffffff;
+            border:0;
+            font-size:1.2rem;
+        }
+        .extra{
+            display: flex;
+            justify-content: space-between;
+            margin-top:20px;
+            .text{
+                color:#e9e9e9;
+            }
+            a{
+                text-decoration: none;
+            }
+        }
+        .other-way{
+            margin-top:20px;
+            .desc{
+                font-size:1.2rem;
+            }
+            .img-box{
+                margin-top:10px;
+                display:flex;
+                justify-content: space-around;
+                .img-bg{
+                    background-color: #e9e9e9;
+                    border-radius: 50%;
+                    width:60px;
+                    height:60px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img{
+                        width:30px;
+                        height:30px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    
+    }
+}

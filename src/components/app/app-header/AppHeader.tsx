@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as styles from "./AppHeader.scss";
 import {Icon,Dropdown,Menu,Badge} from 'antd';
-
+import {withRouter,RouteComponentProps} from 'react-router-dom';
 import avatar from "@/images/home/avatar.jpg";
 
-interface IProps{
-    collapsed: boolean,
+interface IProps extends RouteComponentProps<any>{
+    collapsed?: boolean,
     handleCollapse?:any
 }
 interface IState {
@@ -13,10 +13,11 @@ interface IState {
     sysMenu:any[],
     message:any[],
     userName:string
+
 }
 
 
-export default class AppHeader extends React.Component<IProps,IState> {
+ class AppHeader extends React.Component<IProps,IState> {
 
     public readonly state: Readonly<IState> = {
         collapsed:false,
@@ -26,11 +27,11 @@ export default class AppHeader extends React.Component<IProps,IState> {
     }
 
   
-    constructor(props:IProps){
+    constructor(props:any){
         super(props);
         this.handleCollapse=this.handleCollapse.bind(this);
     }
-
+   
     render() {
         return (
         <div className={styles.appHeader}>
@@ -42,7 +43,7 @@ export default class AppHeader extends React.Component<IProps,IState> {
                     <Icon type="appstore" />
                 </div>
                 <div className={styles.item}>
-                    <Dropdown
+                    {/* <Dropdown
                         overlay={
                         <Menu>
                             {this.state.sysMenu.map(item => (
@@ -57,12 +58,12 @@ export default class AppHeader extends React.Component<IProps,IState> {
                                 <Icon type="bell" style={{fontSize:'20px'}}/>
                             </Badge>
                         </a>
-                    </Dropdown>
+                    </Dropdown> */}
                 </div>
                 <div className={styles.item}>
                     <Dropdown
                         overlay={
-                        <Menu>
+                        <Menu onClick={this.handleSysMenuClick}>
                             {this.state.sysMenu.map(item => (
                             <Menu.Item key={item.key}>{item.name}</Menu.Item>
                             ))}
@@ -82,7 +83,14 @@ export default class AppHeader extends React.Component<IProps,IState> {
     }
     componentDidMount(){
         this.setState({
-            collapsed: this.props.collapsed
+            collapsed: this.props.collapsed,
+            sysMenu:[{
+                key:'logout',
+                name:'退出登录'
+            },{
+                key:'person',
+                name:'个人中心'
+            }]
          });
     }
 
@@ -93,4 +101,22 @@ export default class AppHeader extends React.Component<IProps,IState> {
         this.props.handleCollapse();
     }
 
+    getSysMenu(){
+        this.setState({
+            sysMenu:[{
+                key:'logout',
+                name:'退出登录'
+            }]
+        });
+    }
+
+    handleSysMenuClick=(item:any)=>{
+        if(item.key==='logout'){
+            this.props.history.push("/login");
+        }
+    }
+
+
 }
+
+export default withRouter(AppHeader);
